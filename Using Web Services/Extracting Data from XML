@@ -39,20 +39,20 @@ import xml.etree.ElementTree as ET
 
 url = input("Enter location: ")
 if len(url) < 1:
-    url = "http://py4e-data.dr-chuck.net/comments_42.xml"
+    url = "http://py4e-data.dr-chuck.net/comments_1212244.xml"
 print("Retrieving " + url)
 
-fhand = urllib.request.urlopen(url)
-print("Retrieved: " + str(len(fhand)) + " characters")
+xml = urllib.request.urlopen(url).read()
+print("Retrieved: " + str(len(xml)) + " characters")
 
-tree = ET.fromstring(data)
+tree = ET.fromstring(xml)
 
-counts = tree.findall('.//count').text
-print("Count " + str(len(counts))
+counts =  tree.findall('.//count')
+print("Count: " + str(len(counts)))
 
 total = 0
 
 for count in counts: # iterate through all the count tags
     total += int(count.text)
 
-print("Sum: " + str(total))
+print("Sum:" + str(total))
